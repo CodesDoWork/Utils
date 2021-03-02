@@ -1,0 +1,1 @@
+mvn install:install-file -Dfile=out\artifacts\Utils_jar\Utils.jar -DgroupId=com.codesdowork -DartifactId=utils -Dversion=1.0 -Dpackaging=jar
