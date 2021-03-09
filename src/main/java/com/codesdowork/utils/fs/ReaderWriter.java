@@ -4,6 +4,7 @@ import com.codesdowork.utils.Json;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
@@ -15,7 +16,7 @@ public abstract class ReaderWriter {
         write(file, Json.toJson(content).getBytes());
     }
 
-    public static<T> void write(File file, byte[] content) throws FileNotFoundException {
+    public static void write(File file, byte[] content) throws FileNotFoundException {
         try(FileOutputStream out = new FileOutputStream(file)) {
             out.write(content);
             out.flush();
@@ -26,6 +27,10 @@ public abstract class ReaderWriter {
                 e.printStackTrace();
             }
         }
+    }
+
+    public static byte[] readBytes(File file) throws IOException {
+        return new FileInputStream(file).readAllBytes();
     }
 
     public static String read(File file) throws FileNotFoundException {
