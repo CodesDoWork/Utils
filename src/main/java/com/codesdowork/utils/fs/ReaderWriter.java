@@ -12,8 +12,12 @@ import java.io.IOException;
 public abstract class ReaderWriter {
 
     public static<T> void write(File file, T content) throws FileNotFoundException {
+        write(file, Json.toJson(content).getBytes());
+    }
+
+    public static<T> void write(File file, byte[] content) throws FileNotFoundException {
         try(FileOutputStream out = new FileOutputStream(file)) {
-            out.write(Json.toJson(content).getBytes());
+            out.write(content);
             out.flush();
         } catch (IOException e) {
             if(e instanceof FileNotFoundException) {
